@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap');
+
+@import "tailwindcss";
+
+/* Global font */
+* {
+  font-family: "Rethink Sans", sans-serif;
+}
+
+/* -------------------- BASE THEME -------------------- */
+
+body {
+  @apply bg-slate-50 text-slate-900 transition-colors duration-200;
+}
+
+html.dark body {
+  @apply bg-slate-950 text-white;
+}
+
+/* -------------------- LAYOUT -------------------- */
+
+.page-container {
+  @apply min-h-screen bg-slate-50;
+}
+.dark .page-container {
+  @apply bg-slate-950;
+}
+
+.page-header {
+  @apply bg-white border-b border-slate-100 p-6 pt-12;
+}
+.dark .page-header {
+  @apply bg-slate-900 border-slate-800;
+}
+
+.layout-container {
+  @apply min-h-screen lg:max-h-screen lg:flex bg-white;
+}
+.dark .layout-container {
+  @apply bg-slate-950;
+}
+
+.page-content-grid {
+  @apply p-4 lg:p-6 space-y-4 lg:grid lg:grid-cols-2 lg:gap-6;
+}
+
+/* -------------------- LOGIN -------------------- */
+
+.login-page-container {
+  @apply flex items-center justify-center w-full h-screen px-4 bg-white;
+}
+.dark .login-page-container {
+  @apply bg-slate-950;
+}
+
+.login-input {
+  @apply pl-10 rounded-md ring ring-gray-200 bg-white text-gray-900
+         focus:ring-2 focus:ring-green-600 outline-none p-2.5 w-full transition-all;
+}
+.dark .login-input {
+  @apply ring-slate-700 bg-slate-900 text-white focus:ring-green-500;
+}
+
+/* -------------------- PROFILE / LISTS -------------------- */
+
+.profile-info-row,
+.food-entry-item,
+.activity-entry-item {
+  @apply bg-slate-50 rounded-lg;
+}
+.dark .profile-info-row,
+.dark .food-entry-item,
+.dark .activity-entry-item {
+  @apply bg-slate-800;
+}
+
+/* -------------------- ONBOARDING -------------------- */
+
+.onboarding-container {
+  @apply min-h-screen bg-gradient-to-b from-emerald-50 to-white flex flex-col;
+}
+.dark .onboarding-container {
+  @apply from-slate-900 to-slate-950;
+}
+
+.onboarding-option-btn {
+  @apply w-full p-3 pl-5 rounded-xl border border-slate-200
+         bg-slate-50 hover:border-slate-300 transition-all cursor-pointer;
+}
+.dark .onboarding-option-btn {
+  @apply border-slate-700 bg-slate-800 hover:border-slate-600;
+}
+
+.onboarding-wrapper {
+  @apply max-w-3xl mx-auto w-full flex-grow flex flex-col;
+}
+
+.onboarding-wrappere {
+  @apply max-w-3xl mx-auto w-full flex-grow flex flex-col;
+}
