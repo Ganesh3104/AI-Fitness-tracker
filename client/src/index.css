@@ -94,7 +94,9 @@ html.dark body {
 .onboarding-wrapper {
   @apply max-w-3xl mx-auto w-full flex-grow flex flex-col;
 }
-
+.dark .onboarding-container input {
+  @apply bg-slate-900 text-white border-slate-700 placeholder-slate-400;
+}
 .onboarding-wrappere {
   @apply max-w-3xl mx-auto w-full flex-grow flex flex-col;
 }

@@ -1,12 +1,12 @@
-import { ArrowLeft, ArrowRight, PersonStanding, ScaleIcon, Target, User, Weight } from "lucide-react"
+import { ArrowLeft, ArrowRight, PersonStanding, ScaleIcon, Target, User } from "lucide-react"
 import toast, { Toaster } from "react-hot-toast"
 import { useState } from "react"
 import { useAppContext } from "../context/AppContext";
 import type { ProfileFormData, UserData } from "../types";
 import Input from "../components/ui/Input";
-import Button from "../assets/ui/Button";
+import Slider from "../components/ui/Slider";
 import mockApi from "../assets/mockApi";
-import { goalOptions } from "../assets/assets";
+import { ageRanges, goalOptions } from "../assets/assets";
 
 const Onboarding = () => {
 
@@ -57,7 +57,7 @@ const Onboarding = () => {
 
       <div className="onboarding-container ">
         {/* Header */}
-       <div className="p-6 pt-12 onboarding-wrapper">
+       <div className="p-4 pt-8 onboarding-wrapper">
   <div className="flex items-center gap-3 mb-2">
     <div className="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center">
       <PersonStanding className="w-6 h-6 text-white" />
@@ -125,7 +125,7 @@ const Onboarding = () => {
     )} 
 
      {step === 3 && (
-        <div className="space-y-6 mt-8">
+        <div className="space-y-6 mt-2">
             <div className="flex items-center gap-4 mb-8">
                 <div className="size-10 rounded-xl  border border-emerald-200
                        flex items-center justify-center">
@@ -139,27 +139,55 @@ const Onboarding = () => {
             {/* Options */}
            <div className="space-y-4 max-w-lg">
   {goalOptions.map((option) => (
-    <button
-      key={option.value}
-      onClick={() => setFormData({ ...formData, goal: option.value })}
-      className={`w-full border border-slate-700 bg-slate-800 hover:border-slate-600 p-4 rounded-lg transition
-        ${formData.goal === option.value ? "ring-2 ring-emerald-500" : ""}
-      `}
-    >
-      <span className="text-base text-slate-200">
+    <button key={option.value}
+    onClick={() => {
+      const age = Number(formData.age);
+      const range = ageRanges.find((r) => age <= r.max) || ageRanges
+      [ageRanges.length - 1]
+
+      let intake = range.maintain;
+      let burn = range.burn;
+
+      if(option.value === "lose"){
+        intake -= 400;
+        burn += 100;
+      }else if(option.value === "gain"){
+        intake += 400;
+        burn -= 100;
+      }
+
+      setFormData({
+        ...formData,
+        goal: option.value as 'lose' | 'maintain' | 'gain',
+        dailyCalorieIntake: intake,
+        dailyCalorieBurn: burn
+      })
+    }} className={`onboarding-option-btn ${formData.goal === option.value && 'ring-2 ring-emerald-500'}`}>
+      <span className="text-base text-slate-200 dark:text-slate-200">
         {option.label}
       </span>
     </button>
   ))}
 </div>
+      
+    <div className="border-t border-slate-200 dark:border-slate-700 my-6 max-w-lg"></div>
+      
+    
+{/* Daily Targets */}
+<div className="space-y-8 max-w-lg">
+  <h3 className="text-md font-medium text-slate-200 dark:text-white mb-4">Daily Targets</h3>
+ <div className="space-y-6">
 
-           
-             
-        </div>
+  <Slider label="Daily Calories Intake" min={120} max={4000} step={50} value={formData.dailyCalorieIntake} onChange={(v)=>updateField('dailyCalorieIntake', v)} unit="kcal" infoText="The total calories you plan to consume each day."/>
+  <Slider label="Daily Calories Burn" min={100} max={2000} step={50} value={formData.dailyCalorieBurn} onChange={(v)=>updateField('dailyCalorieBurn', v)} unit="kcal" infoText="The total calories you plan to Burn each day."/>
+
+  </div>
+ </div>
+</div>
     )} 
   </div>
     {/* Navigation buttons */}
-<div className="p-6 pb-10">
+<div className="p-4 pb-6">
   <div className="flex gap-3 lg:justify-end">
 
     {step > 1 && (
