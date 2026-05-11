@@ -1,13 +1,16 @@
 
+import { Sidebar } from "lucide-react"
 import { Outlet } from "react-router-dom"
 
 
 const Layout = () => {
     return (
-        <div>
-            layout
-            by by
-            <Outlet/>
+        <div className="layout-container">
+            <Sidebar/>
+            <div className="flex-1 overflow-y-scroll">
+                <Outlet/>
+            </div>
+           
         </div>
     )
 }
