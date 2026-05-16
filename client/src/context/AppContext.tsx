@@ -11,7 +11,7 @@ export const AppProvider = ({children}: {children: React.ReactNode}) => {
     const navigate =  useNavigate()
     const [user, setUser] = useState<User>(null)
     const [isUserFetched, setIsUserFetched] = useState(false)
-    const [onboardingComplete, setOnboardingComplete] = useState(false)
+    const [onboardingCompleted, setOnboardingCompleted] = useState(false)
     const [allFoodLogs, setAllFoodLogs] = useState<FoodEntry[]>([])
     const [allActivityLogs, setAllActivityLogs] = useState<ActivityEntry[]>([])
 
@@ -21,7 +21,7 @@ export const AppProvider = ({children}: {children: React.ReactNode}) => {
         const {data} = await mockApi.auth.register(credentials)
         setUser(data.user)
         if(data?.user?.age && data?.user?.weight && data?.user?.goal){
-            setOnboardingComplete(true)
+            setOnboardingCompleted(true)
     }
     localStorage.setItem('token', data.jwt)
 }
@@ -31,7 +31,7 @@ export const AppProvider = ({children}: {children: React.ReactNode}) => {
     const {data} = await mockApi.auth.login(credentials)
     setUser({...data.user, token: data.jwt})
      if(data?.user?.age && data?.user?.weight && data?.user?.goal){
-            setOnboardingComplete(true)
+            setOnboardingCompleted(true)
    }
    localStorage.setItem('token', data.jwt)
 }
@@ -40,7 +40,7 @@ const fetchUser = async (token: string) => {
     const { data } = await mockApi.user.me()
     setUser({...data, token})
      if(data?.age && data?.weight && data?.goal){
-            setOnboardingComplete(true)
+            setOnboardingCompleted(true)
    }
 
    setIsUserFetched(true)
@@ -60,7 +60,7 @@ const fetchActivityLogs = async () => {
 const logout = () => {
     localStorage.removeItem('token')
     setUser(null)
-    setOnboardingComplete(false)
+    setOnboardingCompleted(false)
     navigate('/')
 }
 
@@ -80,7 +80,7 @@ useEffect(() => {
     const value = {
         user, setUser, isUserFetched, fetchUser, 
         signup, login, logout, 
-        onboardingComplete, setOnboardingComplete,
+        onboardingCompleted, setOnboardingCompleted,
         allFoodLogs, allActivityLogs,
         setAllFoodLogs, setAllActivityLogs
     }

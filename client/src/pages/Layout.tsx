@@ -1,6 +1,7 @@
 
 import { Sidebar } from "lucide-react"
 import { Outlet } from "react-router-dom"
+import BottomNav from "../components/BottomNav"
 
 
 const Layout = () => {
@@ -10,7 +11,7 @@ const Layout = () => {
             <div className="flex-1 overflow-y-scroll">
                 <Outlet/>
             </div>
-           
+           <BottomNav/>
         </div>
     )
 }
