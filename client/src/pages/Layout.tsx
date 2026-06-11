@@ -1,7 +1,7 @@
 
-import { Sidebar } from "lucide-react"
 import { Outlet } from "react-router-dom"
 import BottomNav from "../components/BottomNav"
+import Sidebar from "../components/Siderbar"
 
 
 const Layout = () => {
