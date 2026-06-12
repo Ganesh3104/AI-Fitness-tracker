@@ -1,7 +1,7 @@
 
 /* Shared Page Styles */
 .page-container {
-  @apply min-h-screen bg-slate-50 dark:bg-slate-950 pb-24 transition-colors duration-200;
+  @apply min-h-screen bg-slate-50 dark:bg-slate-900 pb-24 transition-colors duration-200;
 }
 
 .page-header {
@@ -9,7 +9,7 @@
 }
 
 .layout-container {
-  @apply min-h-screen lg:max-h-screen lg:flex bg-white dark:bg-slate-950 transition-colors duration-200;
+  @apply min-h-screen lg:max-h-screen lg:flex bg-white dark:bg-slate-900 transition-colors duration-200;
 }
 
 .page-content-grid {
@@ -18,7 +18,7 @@
 
 /* Login Page */
 .login-page-container {
-  @apply flex items-center justify-center w-full h-screen px-4 bg-white dark:bg-slate-950 transition-colors duration-200;
+  @apply flex items-center justify-center w-full h-screen px-4 bg-white dark:bg-slate-900 transition-colors duration-200;
 }
 
 .login-form {
@@ -35,7 +35,10 @@
 
 /* Dashboard Page */
 .dashboard-header {
-  @apply bg-linear-to-br from-emerald-500 to-emerald-600 text-white p-6 pt-12 pb-20 rounded-b-3xl;
+  @apply bg-gradient-to-br from-emerald-500 to-emerald-600 text-white p-6 pt-12 pb-20 rounded-b-3xl transition-colors duration-200;
+}
+.dark .dashboard-header {
+  @apply bg-gradient-to-br from-emerald-500 to-emerald-600 text-white;
 }
 
 .dashboard-grid {
@@ -67,7 +70,7 @@
 
 /* Onboarding Page */
 .onboarding-container {
-  @apply min-h-screen bg-linear-to-b from-emerald-50 to-white dark:from-slate-900 dark:to-slate-950 flex flex-col transition-colors duration-200;
+  @apply min-h-screen bg-gradient-to-b from-emerald-50 to-white dark:from-slate-900 dark:to-slate-950 flex flex-col transition-colors duration-200;
 }
 
 .onboarding-wrapper {

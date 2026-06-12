@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap');
 
 @import "tailwindcss";
+@import "./assets/style.css";
 
 /* Global font */
 * {
