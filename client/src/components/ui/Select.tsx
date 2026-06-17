@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronDownIcon } from 'lucide-react';
+import { useTheme } from '../../context/ThemeContext';
 
 interface SelectOption {
     value: string | number;
@@ -17,10 +18,13 @@ interface SelectProps {
 }
 
 export default function Select({ label, value, onChange, options = [], className = '', required = false, placeholder = 'Select an option' }: SelectProps) {
+    const { theme } = useTheme();
+    const selectClasses = `w-full px-4 py-3 rounded-xl border appearance-none focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 cursor-pointer shadow-sm ${theme === 'dark' ? 'border-slate-700 bg-slate-950 text-slate-100' : 'border-slate-200 bg-white text-slate-900'}`;
+
     return (
         <div className={`space-y-2 ${className}`}>
             {label && (
-                <label className='block text-sm font-medium text-slate-700 dark:text-slate-300'>
+                <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
                     {label}
                     {required && <span className='text-red-500 ml-1'>*</span>}
                 </label>
@@ -29,9 +33,9 @@ export default function Select({ label, value, onChange, options = [], className
                 <select
                     value={value}
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => onChange(e.target.value)}
-                    className='w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 cursor-pointer'
+                    className={selectClasses}
                 >
-                    <option value='' disabled>
+                    <option value='' disabled className={theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}>
                         {placeholder}
                     </option>
                     {options.map((option) => (
@@ -40,7 +44,7 @@ export default function Select({ label, value, onChange, options = [], className
                         </option>
                     ))}
                 </select>
-                <ChevronDownIcon className='absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none' />
+                <ChevronDownIcon className='absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-300 pointer-events-none' />
             </div>
         </div>
     );
