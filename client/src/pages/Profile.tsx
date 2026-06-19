@@ -3,7 +3,7 @@ import { use, useEffect, useState} from "react";
 import { useTheme } from "../context/ThemeContext";
 import type { ProfileFormData, UserData } from "../types";
 import Card from "../components/ui/Card";
-import { Calendar, MoonIcon, Scale, SunIcon, Target, User } from "lucide-react";
+import { Calendar, LogOut, MoonIcon, Scale, SunIcon, Target, User } from "lucide-react";
 import Button from "../components/ui/Button";
 import { goalLabels, goalOptions } from "../assets/assets";
 import Input from "../components/ui/Input";
@@ -203,6 +203,13 @@ const Profile = () => {
                     )}
                    </button>
                  </div>
+
+                 {/* logout button */}
+
+                 <Button variant="danger" onClick={logout} className="w-full ring ring-red-300 hover:ring-2">
+                    <LogOut className="size-4"/>
+                    Logout
+                 </Button>
                 </div>
             </div> 
         </div>
