@@ -11,35 +11,49 @@ import CaloriesChart from "../components/CaloriesChart";
 
 const Dashboard = () => {
 
-    const {user, allActivityLogs, allFoodLogs} = useAppContext();
-    const {theme} = useTheme();
-    const [todayFood, setTodayFood] = useState<FoodEntry>([])
-    const [todayActivities, setTodayActivities] = useState<ActivityEntry>([])
+    const { user, allActivityLogs, allFoodLogs } = useAppContext();
+const { theme } = useTheme();
 
-    const DAILY_CALORIE_LIMIT: number = user?.dailyCalorieIntake || 2000;
+const [todayFood, setTodayFood] = useState<FoodEntry[]>([]);
+const [todayActivities, setTodayActivities] = useState<ActivityEntry[]>([]);
 
-    //Load user data
+const DAILY_CALORIE_LIMIT: number = user?.dailyCalorieIntake || 2000;
 
-    const loadUserData = () => {
-        const today = new Date().toISOString().split('T')[0];
-        const foodData = allFoodLogs.filter((f: FoodEntry) => f.createdAt?.split('T')[0] === today);
-        setTodayFood(foodData)
+// Load user data
+const loadUserData = () => {
+    const today = new Date().toISOString().split("T")[0];
 
-         const activityData = allActivityLogs.filter((a: ActivityEntry) => a.createdAt?.split('T')[0] === today);
-         setTodayActivities(activityData)
-    }
-    useEffect(() => {
-        (() => {loadUserData()})();
-    }, [allActivityLogs, allFoodLogs])
+    const foodData = allFoodLogs.filter(
+        (f: FoodEntry) => f.createdAt?.split("T")[0] === today
+    );
+    setTodayFood(foodData);
 
-    const totalCalories: number = todayFood.reduce((sum, item) => sum + item.calories, 0)
+    const activityData = allActivityLogs.filter(
+        (a: ActivityEntry) => a.createdAt?.split("T")[0] === today
+    );
+    setTodayActivities(activityData);
+};
 
-    const remainingCalories: number = DAILY_CALORIE_LIMIT - totalCalories;
+useEffect(() => {
+    loadUserData();
+}, [allActivityLogs, allFoodLogs]);
 
-    const totalActiveMinutes: number = todayActivities.reduce((sum, item) => sum + item.duration, 0)
+const totalCalories: number = todayFood.reduce(
+    (sum: number, item: FoodEntry) => sum + item.calories,
+    0
+);
 
-    const totalBurned: number = todayActivities.reduce((sum, item) => sum + (item.calories || 0), 0)
+const remainingCalories: number = DAILY_CALORIE_LIMIT - totalCalories;
 
+const totalActiveMinutes: number = todayActivities.reduce(
+    (sum: number, item: ActivityEntry) => sum + item.duration,
+    0
+);
+
+const totalBurned: number = todayActivities.reduce(
+    (sum: number, item: ActivityEntry) => sum + (item.calories || 0),
+    0
+);
 
     const motivation = getMotivationalMessage(totalCalories, totalActiveMinutes, DAILY_CALORIE_LIMIT);
     return (

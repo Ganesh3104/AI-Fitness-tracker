@@ -5,7 +5,7 @@ import type { FoodEntry, FormData } from "../types";
 import { mealColors, mealIcons, mealTypeOptions, quickActivitiesFoodLog } from "../assets/assets";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
-import { AwardIcon, Loader2Icon, PlusIcon, SparkleIcon, Trash2Icon, UtensilsCrossedIcon} from "lucide-react";
+import { Loader2Icon, PlusIcon, SparkleIcon, Trash2Icon, UtensilsCrossedIcon} from "lucide-react";
 import Input from "../components/ui/Input";
 import Select from "../components/ui/Select";
 import toast from "react-hot-toast";

@@ -3,10 +3,9 @@ import toast, { Toaster } from "react-hot-toast"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAppContext } from "../context/AppContext";
-import type { ProfileFormData, UserData } from "../types";
+import type { ProfileFormData} from "../types";
 import Input from "../components/ui/Input";
 import Slider from "../components/ui/Slider";
-import mockApi from "../assets/mockApi";
 import { ageRanges, goalOptions } from "../assets/assets";
 import api from "../configs/api";
 
